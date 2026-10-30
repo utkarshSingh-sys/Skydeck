@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Skydeck – live weather for any city</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js" defer></script>
+</head>
+
+<body data-phase="day">
+    <canvas id="sky"></canvas>
+    <div class="page">
+
+        <header>
+            <div class="brand">Sky<em>deck</em></div>
+            <div class="search">
+                <input id="city-input" placeholder="Search any city, e.g. Mumbai" autocomplete="off"
+                    aria-label="Search city">
+                <div id="city-dropdown"></div>
+            </div>
+            <div class="clock"><b id="clock">--:--:--</b><small id="tz"></small></div>
+        </header>
+
+        <section class="hero">
+            <div>
+                <p id="station">Loading…</p>
+                <h1 id="temp">--°</h1>
+                <p class="cond" id="cond">Reading the sky</p>
+                <p class="feels" id="feels"></p>
+            </div>
+            <svg class="sunarc" viewBox="0 0 300 160" aria-label="Sun position today">
+                <path d="M20 130Q150 -50 280 130" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="2"
+                    stroke-dasharray="2 7" stroke-linecap="round" />
+                <line x1="0" y1="130" x2="300" y2="130" stroke="#fff" stroke-opacity=".35" />
+                <circle id="halo" r="26" opacity=".25" />
+                <circle id="sun" r="12" />
+                <text id="sr" x="20" y="150" text-anchor="middle"></text>
+                <text id="ss" x="280" y="150" text-anchor="middle"></text>
+            </svg>
+        </section>
+
+        <p class="alerts"><b>Sky check</b><span id="alerts">Analysing the atmosphere…</span></p>
+
+        <main class="grid">
+            <article class="panel w4" id="hourly">
+                <h2>Next 12 hours</h2>
+                <div class="b"></div>
+            </article>
+            <article class="panel w2 tall" id="forecast">
+                <h2>7-day outlook</h2>
+                <div class="b"></div>
+            </article>
+            <article class="open" id="wind">
+                <h2>Wind</h2>
+                <div class="b"></div>
+            </article>
+            <article class="open" id="atmos">
+                <h2>Humidity &amp; pressure</h2>
+                <div class="b"></div>
+            </article>
+            <article class="open" id="uv">
+                <h2>UV and sun strength</h2>
+                <div class="b"></div>
+            </article>
+            <article class="open" id="clouds">
+                <h2>Cloud cover</h2>
+                <div class="b"></div>
+            </article>
+            <article class="open w4" id="aqi">
+                <h2>Air quality</h2>
+                <div class="b"></div>
+            </article>
+            <article class="open" id="storm">
+                <h2>Storm fuel &amp; visibility</h2>
+                <div class="b"></div>
+            </article>
+            <article class="open w3" id="physics">
+                <h2>Sky physics</h2>
+                <div class="b"></div>
+            </article>
+            <article class="panel w3" id="cyclone">
+                <h2>Cyclone watch: Bay of Bengal &amp; Arabian Sea</h2>
+                <div class="b"></div>
+            </article>
+            <article class="panel w6" id="map">
+                <h2>India satellite &amp; rain radar</h2>
+                <div class="modes">
+                    <button class="mode on" data-m="hybrid">Clouds + radar</button>
+                    <button class="mode" data-m="clouds">Clouds only</button>
+                    <button class="mode" data-m="radar">Radar only</button>
+                </div>
+                <div id="sat"></div>
+            </article>
+        </main>
+
+    </div>
+</body>
+
+</html>
